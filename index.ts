@@ -11,7 +11,7 @@ if (!appName) {
 }
 
 const targetDir = path.join(process.cwd(), appName)
-const templateDir = path.join(__dirname, '../Src')
+const templateDir = path.join(__dirname, 'Src')
 console.log(`Creating new app in ${targetDir}`)
 function copy(src: string, dest: string) {
   fs.mkdirSync(dest, { recursive: true })

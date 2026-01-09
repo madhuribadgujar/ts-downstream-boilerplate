@@ -1,5 +1,5 @@
 {
-  "name": "__basic-boilerplate__",
+  "name": "create-ts-downstream-boilerplate",
   "scripts": {
     "dev": "ts-node Src/server.ts",
     "build": "tsc",
@@ -21,11 +21,30 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.0"
   },
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A Node.js + TypeScript boilerplate for calling downstream APIs using Controller → Service → Adapter pattern with Circuit Breaker.",
   "main": "index.js",
-  "keywords": [],
-  "author": "",
+  "bin": {
+    "create-ts-downstream-boilerplate": "./index.js"
+  },
+  "files": [
+    "Src/",
+    "index.ts",
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json",
+    "README.md",
+    ".env",
+    ".gitignore"
+  ],
+  "keywords": [
+    "typescript",
+    "nodejs",
+    "api",
+    "boilerplate",
+    "circuit-breaker"
+  ],
+  "author": "Madhuri Badgujar <madhubadgujar25@gmail.com>",
   "license": "ISC",
   "type": "commonjs"
 }
