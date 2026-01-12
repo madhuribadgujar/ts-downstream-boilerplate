@@ -27,7 +27,13 @@ if (fs_1.default.existsSync(targetDir)) {
 fs_1.default.mkdirSync(targetDir, { recursive: true })
 
 // Files to copy with content replacement
-const filesToCopy = ['Src', 'tsconfig.json', '.env', '.gitignore', 'README.md']
+const filesToCopy = ['Src', '.env', '.gitignore']
+
+// Template files that need renaming
+const templateFiles = {
+  'README-template.md': 'README.md',
+  'tsconfig-template.json': 'tsconfig.json'
+}
 
 function copyRecursive(src, dest) {
   if (fs_1.default.statSync(src).isDirectory()) {
@@ -44,13 +50,25 @@ function copyRecursive(src, dest) {
   }
 }
 
-// Copy template files
+// Copy regular files
 for (const file of filesToCopy) {
   const srcPath = path_1.default.join(templateDir, file)
   const destPath = path_1.default.join(targetDir, file)
 
   if (fs_1.default.existsSync(srcPath)) {
     copyRecursive(srcPath, destPath)
+  }
+}
+
+// Copy template files with renaming
+for (const [templateFile, targetFile] of Object.entries(templateFiles)) {
+  const srcPath = path_1.default.join(templateDir, templateFile)
+  const destPath = path_1.default.join(targetDir, targetFile)
+
+  if (fs_1.default.existsSync(srcPath)) {
+    let content = fs_1.default.readFileSync(srcPath, 'utf8')
+    content = content.replace(/__APP_NAME__/g, appName)
+    fs_1.default.writeFileSync(destPath, content)
   }
 }
 

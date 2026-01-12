@@ -11,14 +11,18 @@ A Node.js + TypeScript boilerplate generator for creating downstream API applica
 - 📦 **Ready to use**: Includes HTTP client and error handling
 - 🎯 **Template replacement**: Automatically replaces `__APP_NAME__` placeholders
 
-#  using npx (no installation required)
-npx create-ts-downstream-boilerplate <proj_name>
+## Quick Start
+
+Create a new project using npx (no installation required):
+
+```bash
+npx create-ts-downstream-boilerplate my-project-name
 ```
 
 ### Setup your new project
 
 ```bash
-cd my-awesome-api
+cd my-project-name
 npm install
 npm run dev
 ```
