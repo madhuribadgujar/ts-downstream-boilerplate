@@ -66,6 +66,16 @@ if (fs.existsSync(envTemplatePath)) {
   fs.copyFileSync(envTemplatePath, envDestPath)
 }
 
+// Copy README template
+const readmeTemplatePath = path.join(__dirname, 'README-template.md')
+const readmeDestPath = path.join(targetDir, 'README.md')
+if (fs.existsSync(readmeTemplatePath)) {
+  let readmeContent = fs.readFileSync(readmeTemplatePath, 'utf8')
+  // Replace __APP_NAME__ placeholder with actual app name
+  readmeContent = readmeContent.replace(/__APP_NAME__/g, appName)
+  fs.writeFileSync(readmeDestPath, readmeContent)
+}
+
 console.log(`✅ ${appName} created successfully!`)
 console.log(`\nNext steps:`)
 console.log(`  cd ${appName}`)
