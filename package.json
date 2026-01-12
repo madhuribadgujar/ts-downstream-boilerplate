@@ -29,10 +29,10 @@
   },
   "files": [
     "Src/",
-    "index.ts",
     "index.js",
     "index.d.ts",
     "tsconfig.json",
+    "package-template.json",
     "README.md",
     ".env",
     ".gitignore"

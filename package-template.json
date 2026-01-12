@@ -1,0 +1,25 @@
+{
+  "name": "__APP_NAME__",
+  "version": "1.0.0",
+  "description": "A Node.js + TypeScript application using Controller → Service → Adapter pattern",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node Src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "keywords": ["typescript", "nodejs", "api"],
+  "author": "Your Name <your.email@example.com>",
+  "license": "ISC",
+  "type": "commonjs"
+}
