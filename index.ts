@@ -6,13 +6,21 @@ import path from 'path'
 const appName = process.argv[2]
 
 if (!appName) {
-  console.error('Usage: ts-downstream-boilerplate <Basic_Boilerplate_>')
+  console.error('Usage: create-ts-downstream-boilerplate <app-name>')
   process.exit(1)
 }
 
 const targetDir = path.join(process.cwd(), appName)
 const templateDir = path.join(__dirname, 'Src')
-console.log(`Creating new app in ${targetDir}`)
+
+console.log(`Creating new TypeScript API project "${appName}"...`)
+
+// Create target directory
+if (fs.existsSync(targetDir)) {
+  console.error(`Directory ${appName} already exists.`)
+  process.exit(1)
+}
+
 function copy(src: string, dest: string) {
   fs.mkdirSync(dest, { recursive: true })
 
@@ -30,5 +38,37 @@ function copy(src: string, dest: string) {
   }
 }
 
+// Copy the main source files
 copy(templateDir, targetDir)
-console.log(`${appName} created`)
+
+// Copy package.json template
+const packageTemplatePath = path.join(__dirname, 'package-template.json')
+const packageDestPath = path.join(targetDir, 'package.json')
+if (fs.existsSync(packageTemplatePath)) {
+  let packageContent = fs.readFileSync(packageTemplatePath, 'utf8')
+  packageContent = packageContent.replace(/__APP_NAME__/g, appName)
+  fs.writeFileSync(packageDestPath, packageContent)
+}
+
+// Copy tsconfig.json template
+const tsconfigTemplatePath = path.join(__dirname, 'tsconfig-template.json')
+const tsconfigDestPath = path.join(targetDir, 'tsconfig.json')
+if (fs.existsSync(tsconfigTemplatePath)) {
+  let tsconfigContent = fs.readFileSync(tsconfigTemplatePath, 'utf8')
+  tsconfigContent = tsconfigContent.replace(/__APP_NAME__/g, appName)
+  fs.writeFileSync(tsconfigDestPath, tsconfigContent)
+}
+
+// Copy .env file
+const envTemplatePath = path.join(__dirname, '.env')
+const envDestPath = path.join(targetDir, '.env')
+if (fs.existsSync(envTemplatePath)) {
+  fs.copyFileSync(envTemplatePath, envDestPath)
+}
+
+console.log(`✅ ${appName} created successfully!`)
+console.log(`\nNext steps:`)
+console.log(`  cd ${appName}`)
+console.log(`  npm install`)
+console.log(`  npm run dev`)
+console.log(`\nYour server will start on http://localhost:4001`)
