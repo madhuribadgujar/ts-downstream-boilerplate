@@ -82,17 +82,7 @@ This boilerplate implements a clean, scalable architecture:
 3. **Adapter**: Manages external API communication
 4. **Circuit Breaker**: Provides fault tolerance
 
-## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-ISC License - see LICENSE file for details
 
 ## Author
 
