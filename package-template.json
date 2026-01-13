@@ -19,7 +19,7 @@
     "typescript": "^5.3.0"
   },
   "keywords": ["typescript", "nodejs", "api"],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Madhuri Badgujar <madhubadgujar25@gmail.com>",
   "license": "ISC",
   "type": "commonjs"
 }

@@ -6,7 +6,7 @@ import path from 'path'
 const appName = process.argv[2]
 
 if (!appName) {
-  console.error('Usage: create-ts-downstream-boilerplate <project-name>')
+  console.log('Usage: create-ts-downstream-boilerplate <project-name>')
   process.exit(1)
 }
 
@@ -17,7 +17,7 @@ console.log(`Creating new TypeScript API project "${appName}"...`)
 
 // Create target directory
 if (fs.existsSync(targetDir)) {
-  console.error(`Directory ${appName} already exists!`)
+  console.log(`Directory ${appName} already exists!`)
   process.exit(1)
 }
 
@@ -55,7 +55,7 @@ for (const file of filesToCopy) {
   if (fs.existsSync(srcPath)) {
     copyRecursive(srcPath, destPath)
   } else {
-    console.warn(`⚠️ WARNING: ${file} not found, skipping...`)
+    console.log(`: ${file} not found, skipping...`)
   }
 }
 
@@ -69,7 +69,7 @@ for (const [templateFile, targetFile] of Object.entries(templateFiles)) {
     content = content.replace(/__APP_NAME__/g, appName)
     fs.writeFileSync(destPath, content)
   } else {
-    console.warn(`⚠️ WARNING: ${templateFile} not found, skipping...`)
+    console.log(`: ${templateFile} not found, skipping...`)
   }
 }
 
@@ -82,16 +82,16 @@ if (fs.existsSync(packageTemplatePath)) {
   packageContent = packageContent.replace(/__APP_NAME__/g, appName)
   fs.writeFileSync(packagePath, packageContent)
 } else {
-  console.error(
-    `❌ ERROR: package-template.json not found at: ${packageTemplatePath}`
+  console.log(
+    ` Err: package-template.json not found at: ${packageTemplatePath}`
   )
   console.log('Available files in template directory:')
   if (fs.existsSync(templateDir)) {
     fs.readdirSync(templateDir).forEach(file => {
-      console.log(`  - ${file}`)
+      console.log(` - ${file}`)
     })
   }
-  console.error('This will cause npm install to fail!')
+  console.log('This will cause npm install to fail!')
   process.exit(1)
 }
 

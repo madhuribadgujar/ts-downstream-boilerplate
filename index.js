@@ -8,14 +8,14 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const appName = process.argv[2];
 if (!appName) {
-    console.error('Usage: create-ts-downstream-boilerplate <project-name>');
+    console.log('Usage: create-ts-downstream-boilerplate <project-name>');
     process.exit(1);
 }
 const targetDir = path_1.default.join(process.cwd(), appName);
 const templateDir = __dirname;
 console.log(`Creating new TypeScript API project "${appName}"...`);
 if (fs_1.default.existsSync(targetDir)) {
-    console.error(`Directory ${appName} already exists!`);
+    console.log(`Directory ${appName} already exists!`);
     process.exit(1);
 }
 fs_1.default.mkdirSync(targetDir, { recursive: true });
@@ -46,7 +46,7 @@ for (const file of filesToCopy) {
         copyRecursive(srcPath, destPath);
     }
     else {
-        console.warn(`⚠️ WARNING: ${file} not found, skipping...`);
+        console.log(`: ${file} not found, skipping...`);
     }
 }
 for (const [templateFile, targetFile] of Object.entries(templateFiles)) {
@@ -58,7 +58,7 @@ for (const [templateFile, targetFile] of Object.entries(templateFiles)) {
         fs_1.default.writeFileSync(destPath, content);
     }
     else {
-        console.warn(`⚠️ WARNING: ${templateFile} not found, skipping...`);
+        console.log(`: ${templateFile} not found, skipping...`);
     }
 }
 const packageTemplatePath = path_1.default.join(templateDir, 'package-template.json');
@@ -69,14 +69,14 @@ if (fs_1.default.existsSync(packageTemplatePath)) {
     fs_1.default.writeFileSync(packagePath, packageContent);
 }
 else {
-    console.error(`❌ ERROR: package-template.json not found at: ${packageTemplatePath}`);
+    console.log(` Err: package-template.json not found at: ${packageTemplatePath}`);
     console.log('Available files in template directory:');
     if (fs_1.default.existsSync(templateDir)) {
         fs_1.default.readdirSync(templateDir).forEach(file => {
-            console.log(`  - ${file}`);
+            console.log(` - ${file}`);
         });
     }
-    console.error('This will cause npm install to fail!');
+    console.log('This will cause npm install to fail!');
     process.exit(1);
 }
 console.log(`✅ Project "${appName}" created successfully!`);
