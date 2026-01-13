@@ -85,4 +85,3 @@ console.log(`  cd ${appName}`);
 console.log(`  npm install`);
 console.log(`  npm run dev`);
 console.log(`\nHappy coding! 🚀`);
-//# sourceMappingURL=index.js.map
